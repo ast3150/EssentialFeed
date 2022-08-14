@@ -51,15 +51,17 @@ class URLSessionHTTPClientTests: XCTestCase {
         let url = URL(string: "http://any-url.com")!
         let session = HTTPSessionSpy()
         let error = NSError(domain: "any error", code: 1)
-        let sut = URLSessionHTTPClient(session: session)
-        session.stub(url: url, error: error)
+        URLProtocolStub.stub(url: url, data: nil, response: nil, error: error)
+        
+        let sut = URLSessionHTTPClient()
         
         let exp = expectation(description: "Wait for completion")
         
         sut.get(from: url) { result in
             switch result {
             case let .failure(receivedError as NSError):
-                XCTAssertEqual(receivedError, error)
+                XCTAssertEqual(receivedError.domain, error.domain)
+                XCTAssertEqual(receivedError.code, error.code)
             default:
                 XCTFail("Expected failure with error \(error), got \(result) instead")
             }
@@ -76,12 +78,13 @@ class URLSessionHTTPClientTests: XCTestCase {
         private var stubs = [URL: Stub]()
         
         private struct Stub {
-            let task: HTTPSessionTask
+            let data: Data?
+            let response: URLResponse?
             let error: Error?
         }
         
-        func stub(url: URL, task: HTTPSessionTask = FakeURLSessionDataTask(), error: Error? = nil) {
-            stubs[url] = Stub(task: task, error: error)
+        static func stub(url: URL, data: Data?, response: URLResponse?, error: Error? = nil) {
+            stubs[url] = Stub(data: data, response: response, error: error)
         }
         
         func dataTask(with url: URL, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) -> HTTPSessionTask {
@@ -101,8 +104,24 @@ class URLSessionHTTPClientTests: XCTestCase {
     private class URLSessionDataTaskSpy: HTTPSessionTask {
         var resumeCallCount = 0
         
-        func resume() {
-            resumeCallCount += 1
+        override func startLoading() {
+            guard let url = request.url, let stub = URLProtocolStub.stubs[url] else {
+                return
+            }
+            
+            if let data = stub.data {
+                client?.urlProtocol(self, didLoad: data)
+            }
+            
+            if let response = stub.response {
+                client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
+            }
+            
+            if let error = stub.error {
+                client?.urlProtocol(self, didFailWithError: error)
+            }
+            
+            client?.urlProtocolDidFinishLoading(self)
         }
     }
 }
