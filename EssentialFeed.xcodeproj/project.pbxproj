@@ -127,6 +127,7 @@
 			children = (
 				0E6EF4FF28996FFB001569BA /* EssentialFeed.h */,
 				0E6EF5182899715E001569BA /* Feed Feature */,
+				0E92F63E28D610490017A3D7 /* Feed Cache */,
 				0E6EF51B28997A6E001569BA /* Feed API */,
 			);
 			path = EssentialFeed;
@@ -166,6 +167,13 @@
 			isa = PBXGroup;
 			children = (
 				0E92F63C28D606870017A3D7 /* CacheFeedUseCaseTests.swift */,
+			);
+			path = "Feed Cache";
+			sourceTree = "<group>";
+		};
+		0E92F63E28D610490017A3D7 /* Feed Cache */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = "Feed Cache";
 			sourceTree = "<group>";
