@@ -69,11 +69,13 @@ class CodableFeedStore {
     }
     
     func deleteCachedFeed(completion: @escaping FeedStore.DeletionCompletion) {
+        guard FileManager.default.fileExists(atPath: storeURL.path),
+              FileManager.default.isDeletableFile(atPath: storeURL.path) else {
+            return completion(nil)
+        }
+        
         do {
-            if FileManager.default.fileExists(atPath: storeURL.path),
-               FileManager.default.isDeletableFile(atPath: storeURL.path) {
-                try FileManager.default.removeItem(at: storeURL)
-            }
+            try FileManager.default.removeItem(at: storeURL)
             completion(nil)
         } catch {
             completion(error)
