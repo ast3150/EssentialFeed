@@ -69,8 +69,15 @@ class CodableFeedStore {
     }
     
     func deleteCachedFeed(completion: @escaping FeedStore.DeletionCompletion) {
-        try? FileManager.default.removeItem(at: storeURL)
-        completion(nil)
+        do {
+            if FileManager.default.fileExists(atPath: storeURL.path),
+               FileManager.default.isDeletableFile(atPath: storeURL.path) {
+                try FileManager.default.removeItem(at: storeURL)
+            }
+            completion(nil)
+        } catch {
+            completion(error)
+        }
     }
 }
 
@@ -191,7 +198,16 @@ class CodableFeedStoreTests: XCTestCase {
     }
     
     func test_delete_deliversErrorOnDeletionError() throws {
-        throw XCTSkip("Not implemented")
+        let noDeletePermissionsURL = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first!
+        let sut = makeSUT(storeURL: noDeletePermissionsURL)
+        let exp = expectation(description: "Wait for cache deletion")
+        
+        sut.deleteCachedFeed { deletionError in
+            XCTAssertNotNil(deletionError)
+            exp.fulfill()
+        }
+        
+        wait(for: [exp], timeout: 1.0)
     }
     
     // MARK: - Helpers
