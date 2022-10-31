@@ -177,9 +177,7 @@ class CodableFeedStoreTests: XCTestCase {
     
     func test_delete_deletesCacheOnNonEmptyCache() {
         let sut = makeSUT()
-        let feed = uniqueImageFeed().local
-        let timestamp = Date()
-        insert((feed, timestamp), to: sut)
+        insert((uniqueImageFeed().local, Date()), to: sut)
         
         deleteCache(from: sut)
         
