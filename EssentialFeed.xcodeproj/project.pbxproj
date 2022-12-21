@@ -42,6 +42,7 @@
 		0EAE040E2953485D00C8ED11 /* CoreDataFeedStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE040D2953485D00C8ED11 /* CoreDataFeedStoreTests.swift */; };
 		0EAE04102953489400C8ED11 /* CoreDataFeedStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE040F2953489400C8ED11 /* CoreDataFeedStore.swift */; };
 		0EAE04132953493D00C8ED11 /* FeedStore.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0EAE04112953493D00C8ED11 /* FeedStore.xcdatamodeld */; };
+		0ECF122829534F9300B67D2C /* CoreDataHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0ECF122729534F9300B67D2C /* CoreDataHelpers.swift */; };
 		0EF27A3D29003D0F00A05F67 /* ValidateFeedCacheUseCaseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0EF27A3C29003D0F00A05F67 /* ValidateFeedCacheUseCaseTests.swift */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +107,7 @@
 		0EAE040D2953485D00C8ED11 /* CoreDataFeedStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStoreTests.swift; sourceTree = "<group>"; };
 		0EAE040F2953489400C8ED11 /* CoreDataFeedStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataFeedStore.swift; sourceTree = "<group>"; };
 		0EAE04122953493D00C8ED11 /* FeedStore.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FeedStore.xcdatamodel; sourceTree = "<group>"; };
+		0ECF122729534F9300B67D2C /* CoreDataHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataHelpers.swift; sourceTree = "<group>"; };
 		0EF27A3C29003D0F00A05F67 /* ValidateFeedCacheUseCaseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValidateFeedCacheUseCaseTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -302,6 +304,7 @@
 			isa = PBXGroup;
 			children = (
 				0EAE040F2953489400C8ED11 /* CoreDataFeedStore.swift */,
+				0ECF122729534F9300B67D2C /* CoreDataHelpers.swift */,
 				0EAE04112953493D00C8ED11 /* FeedStore.xcdatamodeld */,
 			);
 			path = CoreData;
@@ -491,6 +494,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ECF122829534F9300B67D2C /* CoreDataHelpers.swift in Sources */,
 				0E2314D228A68E92001CD97F /* FeedItemsMapper.swift in Sources */,
 				0E6EF517289970BB001569BA /* FeedLoader.swift in Sources */,
 				0E5BA98028FDA3340002983B /* RemoteFeedItem.swift in Sources */,
