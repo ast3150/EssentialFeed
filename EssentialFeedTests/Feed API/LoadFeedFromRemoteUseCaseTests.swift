@@ -126,18 +126,16 @@ class LoadFeedFromRemoteUseCaseTests: XCTestCase {
     
     private func makeItem(id: UUID, description: String? = nil, location: String? = nil, imageURL: URL) -> (model: FeedImage, json: [String: Any]) {
         let item = FeedImage(id: id,
-                            description: description,
-                            location: location,
-                            url: imageURL)
+                             description: description,
+                             location: location,
+                             url: imageURL)
         
         let json = [
             "id": id.uuidString,
             "description": description,
             "location": location,
             "image": imageURL.absoluteString
-        ].reduce(into: [String: Any]()) { (acc, e) in
-            if let value = e.value { acc[e.key] = value }
-        }
+        ].compactMapValues { $0 }
         
         return (item, json)
     }
