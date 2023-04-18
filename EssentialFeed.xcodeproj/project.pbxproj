@@ -374,6 +374,7 @@
 		0E3A27B029D721CF002D22D9 /* Feed UI */ = {
 			isa = PBXGroup;
 			children = (
+				0E1E7993299649D900013050 /* Helpers */,
 				0E9E63F2297AD4FB001FE663 /* FeedUIIntegrationTests.swift */,
 			);
 			path = "Feed UI";
@@ -556,7 +557,6 @@
 			isa = PBXGroup;
 			children = (
 				0E3A27B029D721CF002D22D9 /* Feed UI */,
-				0E1E7993299649D900013050 /* Helpers */,
 			);
 			path = EssentialFeediOSTests;
 			sourceTree = "<group>";
