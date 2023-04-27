@@ -14,6 +14,10 @@
 		0E741C6629FAA5360022565D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0E741C6529FAA5360022565D /* Assets.xcassets */; };
 		0E741C6929FAA5360022565D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0E741C6729FAA5360022565D /* LaunchScreen.storyboard */; };
 		0E741C7429FAA5360022565D /* EssentialAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E741C7329FAA5360022565D /* EssentialAppTests.swift */; };
+		0E741C8F29FAA6530022565D /* EssentialFeed.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E741C8D29FAA6530022565D /* EssentialFeed.framework */; };
+		0E741C9029FAA6530022565D /* EssentialFeed.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E741C8D29FAA6530022565D /* EssentialFeed.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		0E741C9129FAA6530022565D /* EssentialFeediOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0E741C8E29FAA6530022565D /* EssentialFeediOS.framework */; };
+		0E741C9229FAA6530022565D /* EssentialFeediOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 0E741C8E29FAA6530022565D /* EssentialFeediOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,6 +30,21 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		0E741C9329FAA6530022565D /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				0E741C9029FAA6530022565D /* EssentialFeed.framework in Embed Frameworks */,
+				0E741C9229FAA6530022565D /* EssentialFeediOS.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0E741C5929FAA5350022565D /* EssentialApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = EssentialApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E741C5C29FAA5350022565D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -37,6 +56,8 @@
 		0E741C6A29FAA5360022565D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E741C6F29FAA5360022565D /* EssentialAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EssentialAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0E741C7329FAA5360022565D /* EssentialAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EssentialAppTests.swift; sourceTree = "<group>"; };
+		0E741C8D29FAA6530022565D /* EssentialFeed.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeed.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		0E741C8E29FAA6530022565D /* EssentialFeediOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = EssentialFeediOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +65,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0E741C8F29FAA6530022565D /* EssentialFeed.framework in Frameworks */,
+				0E741C9129FAA6530022565D /* EssentialFeediOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +86,7 @@
 				0E741C5B29FAA5350022565D /* EssentialApp */,
 				0E741C7229FAA5360022565D /* EssentialAppTests */,
 				0E741C5A29FAA5350022565D /* Products */,
+				0E741C8C29FAA6530022565D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,6 +121,15 @@
 			path = EssentialAppTests;
 			sourceTree = "<group>";
 		};
+		0E741C8C29FAA6530022565D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0E741C8D29FAA6530022565D /* EssentialFeed.framework */,
+				0E741C8E29FAA6530022565D /* EssentialFeediOS.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -107,6 +140,7 @@
 				0E741C5529FAA5350022565D /* Sources */,
 				0E741C5629FAA5350022565D /* Frameworks */,
 				0E741C5729FAA5350022565D /* Resources */,
+				0E741C9329FAA6530022565D /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
