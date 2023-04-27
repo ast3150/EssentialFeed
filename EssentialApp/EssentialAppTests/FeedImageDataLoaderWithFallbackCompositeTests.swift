@@ -104,7 +104,7 @@ class FeedImageDataLoaderWithFallbackCompositeTests: XCTestCase {
         })
     }
     
-    func test_loadImageData_deliversFallbackDataOnPrimaryLoaderFailure() {
+    func test_loadImageData_deliversFallbackDataOnFallbackLoaderSuccess() {
         let fallbackData = anyData()
         let (sut, primaryLoader, fallbackLoader) = makeSUT()
         
