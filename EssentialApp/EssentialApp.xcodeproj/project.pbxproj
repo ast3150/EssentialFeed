@@ -26,6 +26,7 @@
 		0E814B8B29FC02B700E16AB0 /* FeedLoaderCacheDecoratorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E814B8A29FC02B700E16AB0 /* FeedLoaderCacheDecoratorTests.swift */; };
 		0E9658F329FC04C0007DC2AC /* FeedLoaderStub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9658F229FC04C0007DC2AC /* FeedLoaderStub.swift */; };
 		0E9658F529FC0881007DC2AC /* XCTestCase+FeedLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9658F429FC0881007DC2AC /* XCTestCase+FeedLoader.swift */; };
+		0E9658F929FC0CD1007DC2AC /* FeedLoaderCacheDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E9658F829FC0CD1007DC2AC /* FeedLoaderCacheDecorator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +75,7 @@
 		0E814B8A29FC02B700E16AB0 /* FeedLoaderCacheDecoratorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderCacheDecoratorTests.swift; sourceTree = "<group>"; };
 		0E9658F229FC04C0007DC2AC /* FeedLoaderStub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderStub.swift; sourceTree = "<group>"; };
 		0E9658F429FC0881007DC2AC /* XCTestCase+FeedLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+FeedLoader.swift"; sourceTree = "<group>"; };
+		0E9658F829FC0CD1007DC2AC /* FeedLoaderCacheDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedLoaderCacheDecorator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +140,7 @@
 				0E741C6529FAA5360022565D /* Assets.xcassets */,
 				0E741C6729FAA5360022565D /* LaunchScreen.storyboard */,
 				0E741C6A29FAA5360022565D /* Info.plist */,
+				0E9658F829FC0CD1007DC2AC /* FeedLoaderCacheDecorator.swift */,
 			);
 			path = EssentialApp;
 			sourceTree = "<group>";
@@ -267,6 +270,7 @@
 				0E741C6129FAA5350022565D /* ViewController.swift in Sources */,
 				0E741C5D29FAA5350022565D /* AppDelegate.swift in Sources */,
 				0E631D8629FAB1B300077627 /* FeedLoaderWithFallbackComposite.swift in Sources */,
+				0E9658F929FC0CD1007DC2AC /* FeedLoaderCacheDecorator.swift in Sources */,
 				0E741C5F29FAA5350022565D /* SceneDelegate.swift in Sources */,
 				0E631D8A29FAB8F700077627 /* FeedImageDataLoaderWithFallbackComposite.swift in Sources */,
 			);
