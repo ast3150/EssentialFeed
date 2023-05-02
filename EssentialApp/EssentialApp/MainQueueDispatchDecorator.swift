@@ -5,6 +5,7 @@
 //  Created by Alain Stulz on 31.03.23.
 //
 
+import Combine
 import EssentialFeed
 
 final class MainQueueDispatchDecorator<T> {
@@ -20,14 +21,6 @@ final class MainQueueDispatchDecorator<T> {
         }
         
         completion()
-    }
-}
-
-extension MainQueueDispatchDecorator: FeedLoader where T == FeedLoader {
-    func load(completion: @escaping (FeedLoader.Result) -> Void) {
-        decoratee.load { [weak self] result in
-            self?.dispatch { completion(result) }
-        }
     }
 }
 
