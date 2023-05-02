@@ -23,26 +23,32 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let _ = (scene as? UIWindowScene) else { return }
-        
+
+        configureWindow()
+    }
+    
+    func configureWindow() {
         let remoteURL = URL(string: "https://ile-api.essentialdeveloper.com/essential-feed/v1/feed")!
         
         let remoteClient = makeRemoteClient()
         let remoteFeedLoader = RemoteFeedLoader(url: remoteURL, client: remoteClient)
         let remoteImageLoader = RemoteFeedImageDataLoader(client: remoteClient)
-            
+        
         let localStore = try! CoreDataFeedStore(storeURL: localStoreURL)
         let localFeedLoader = LocalFeedLoader(store: localStore, currentDate: Date.init)
         let localImageLoader = LocalFeedImageDataLoader(store: localStore)
         
-        window?.rootViewController = FeedUIComposer.feedComposedWith(
-            feedLoader: FeedLoaderWithFallbackComposite(
-                primary: FeedLoaderCacheDecorator(decoratee: remoteFeedLoader,
-                                                  cache: localFeedLoader),
-                fallback: localFeedLoader),
-            imageLoader: FeedImageDataLoaderWithFallbackComposite(
-                primary: FeedImageDataLoaderCacheDecorator(decoratee: remoteImageLoader,
-                                                           cache: localImageLoader),
-                fallback: localImageLoader))
+        window?.rootViewController = UINavigationController(
+            rootViewController: FeedUIComposer.feedComposedWith(
+                feedLoader: FeedLoaderWithFallbackComposite(
+                    primary: FeedLoaderCacheDecorator(decoratee: remoteFeedLoader,
+                                                      cache: localFeedLoader),
+                    fallback: localFeedLoader),
+                imageLoader: FeedImageDataLoaderWithFallbackComposite(
+                    primary: FeedImageDataLoaderCacheDecorator(decoratee: remoteImageLoader,
+                                                               cache: localImageLoader),
+                    fallback: localImageLoader))
+        )
     }
     
     func makeRemoteClient() -> HTTPClient {

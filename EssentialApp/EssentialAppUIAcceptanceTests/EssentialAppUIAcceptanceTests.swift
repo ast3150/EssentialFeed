@@ -46,3 +46,4 @@ final class EssentialAppUIAcceptanceTests: XCTestCase {
         XCTAssertEqual(feedCells.count, 0)
     }
 }
+ 
