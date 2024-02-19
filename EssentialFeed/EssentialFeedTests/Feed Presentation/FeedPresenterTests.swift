@@ -19,7 +19,7 @@ class FeedPresenterTests: XCTestCase {
         
         let viewModel = FeedPresenter.map(feed)
         
-        XCTAssertEqual(viewModel.feed, viewModel)
+        XCTAssertEqual(viewModel.feed, feed)
     }
     
     func test_init_doesNotSendMessagesToView() {
