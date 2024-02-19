@@ -56,7 +56,7 @@ extension ListViewController {
     }
     
     var errorMessage: String? {
-        return errorView?.message
+        return errorView.message
     }
 
     var isShowingLoadingIndicator: Bool {
@@ -65,6 +65,10 @@ extension ListViewController {
     
     func simulateUserInitiatedReload() {
         refreshControl?.simulatePullToRefresh()
+    }
+    
+    func simulateErrorViewTap() {
+        errorView.simulateTap()
     }
     
     func numberOfRenderedFeedImageViews() -> Int {
