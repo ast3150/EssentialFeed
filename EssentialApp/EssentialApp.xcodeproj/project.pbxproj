@@ -26,7 +26,7 @@
 		0E7C0D882A016C5D0042E0E2 /* FeedUIIntegrationTests+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7C0D862A016C5D0042E0E2 /* FeedUIIntegrationTests+Localization.swift */; };
 		0E7C0D892A016C5D0042E0E2 /* UIRefreshControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7C0D802A016C5C0042E0E2 /* UIRefreshControl+TestHelpers.swift */; };
 		0E7C0D8A2A016C5D0042E0E2 /* UIButton+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7C0D832A016C5D0042E0E2 /* UIButton+TestHelpers.swift */; };
-		0E7C0D8B2A016C5D0042E0E2 /* FeedViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7C0D7E2A016C5C0042E0E2 /* FeedViewController+TestHelpers.swift */; };
+		0E7C0D8B2A016C5D0042E0E2 /* ListViewController+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7C0D7E2A016C5C0042E0E2 /* ListViewController+TestHelpers.swift */; };
 		0E7C0D8C2A016C5D0042E0E2 /* FeedImageCell+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7C0D842A016C5D0042E0E2 /* FeedImageCell+TestHelpers.swift */; };
 		0E7C0D8D2A016C5D0042E0E2 /* UIControl+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7C0D812A016C5C0042E0E2 /* UIControl+TestHelpers.swift */; };
 		0E7C0D8E2A016C5D0042E0E2 /* UIImage+TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0E7C0D822A016C5D0042E0E2 /* UIImage+TestHelpers.swift */; };
@@ -80,7 +80,7 @@
 		0E7C0D742A016C490042E0E2 /* LoadResourcePresentationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadResourcePresentationAdapter.swift; sourceTree = "<group>"; };
 		0E7C0D762A016C490042E0E2 /* FeedViewAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewAdapter.swift; sourceTree = "<group>"; };
 		0E7C0D772A016C490042E0E2 /* WeakRefVirtualProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeakRefVirtualProxy.swift; sourceTree = "<group>"; };
-		0E7C0D7E2A016C5C0042E0E2 /* FeedViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedViewController+TestHelpers.swift"; sourceTree = "<group>"; };
+		0E7C0D7E2A016C5C0042E0E2 /* ListViewController+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ListViewController+TestHelpers.swift"; sourceTree = "<group>"; };
 		0E7C0D7F2A016C5C0042E0E2 /* FeedUIIntegrationTests+Assertions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FeedUIIntegrationTests+Assertions.swift"; sourceTree = "<group>"; };
 		0E7C0D802A016C5C0042E0E2 /* UIRefreshControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIRefreshControl+TestHelpers.swift"; sourceTree = "<group>"; };
 		0E7C0D812A016C5C0042E0E2 /* UIControl+TestHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIControl+TestHelpers.swift"; sourceTree = "<group>"; };
@@ -123,7 +123,7 @@
 				0E7C0D802A016C5C0042E0E2 /* UIRefreshControl+TestHelpers.swift */,
 				0E7C0D832A016C5D0042E0E2 /* UIButton+TestHelpers.swift */,
 				0E7C0D812A016C5C0042E0E2 /* UIControl+TestHelpers.swift */,
-				0E7C0D7E2A016C5C0042E0E2 /* FeedViewController+TestHelpers.swift */,
+				0E7C0D7E2A016C5C0042E0E2 /* ListViewController+TestHelpers.swift */,
 				0E7C0D842A016C5D0042E0E2 /* FeedImageCell+TestHelpers.swift */,
 				0E7C0D852A016C5D0042E0E2 /* FeedUIIntegrationTests+LoaderSpy.swift */,
 				0E7C0D7F2A016C5C0042E0E2 /* FeedUIIntegrationTests+Assertions.swift */,
@@ -307,7 +307,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0E7C0D8B2A016C5D0042E0E2 /* FeedViewController+TestHelpers.swift in Sources */,
+				0E7C0D8B2A016C5D0042E0E2 /* ListViewController+TestHelpers.swift in Sources */,
 				0E7C0D882A016C5D0042E0E2 /* FeedUIIntegrationTests+Localization.swift in Sources */,
 				0E7C0D8F2A016C5D0042E0E2 /* FeedUIIntegrationTests+LoaderSpy.swift in Sources */,
 				0E631D8F29FAB95000077627 /* SharedTestHelpers.swift in Sources */,

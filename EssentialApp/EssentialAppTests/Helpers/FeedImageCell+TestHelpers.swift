@@ -17,7 +17,7 @@ extension FeedImageCell {
         return !locationContainer.isHidden
     }
     
-    var isShowingLoadingIndicator: Bool {
+    var isShowingImageLoadingIndicator: Bool {
         return feedImageContainer.isShimmering
     }
     
