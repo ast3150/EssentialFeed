@@ -19,7 +19,7 @@ class CacheFeedUseCaseTests: XCTestCase {
     func test_save_requestsCacheDeletion() throws {
         let (sut, store) = makeSUT()
         
-        sut.save(uniqueImageFeed().models) { _ in }
+        try sut.save(uniqueImageFeed().models)
         
         let firstMessage = try XCTUnwrap(store.receivedMessages.first)
         XCTAssertEqual(firstMessage, .deleteCachedFeed)
@@ -30,7 +30,7 @@ class CacheFeedUseCaseTests: XCTestCase {
         let deletionError = anyNSError()
         
         store.stubDeletion(with: deletionError)
-        sut.save(uniqueImageFeed().models) { _ in }
+        try? sut.save(uniqueImageFeed().models)
         
         XCTAssertEqual(store.receivedMessages, [.deleteCachedFeed])
     }
@@ -41,7 +41,7 @@ class CacheFeedUseCaseTests: XCTestCase {
         let (sut, store) = makeSUT(currentDate: { timestamp })
         
         store.stubDeletionSuccessfully()
-        sut.save(feed.models) { _ in }
+        XCTAssertNoThrow(try sut.save(feed.models))
         
         XCTAssertEqual(store.receivedMessages, [.deleteCachedFeed, .insert(feed.local, timestamp)])
     }
@@ -87,18 +87,15 @@ class CacheFeedUseCaseTests: XCTestCase {
     }
     
     private func expect(_ sut: LocalFeedLoader, toCompleteWithError expectedError: NSError?, when action: () -> Void, file: StaticString = #file, line: UInt = #line) {
-        let exp = expectation(description: "Wait for save completion")
-        
         action()
         
-        var receivedError: Error?
-        sut.save(uniqueImageFeed().models) { result in
-            if case let Result.failure(error) = result { receivedError = error }
-            exp.fulfill()
+        do {
+            let _ = try sut.save(uniqueImageFeed().models)
+            if let expectedError {
+                XCTFail("Expected saving to fail with \(expectedError)), got success instead")
+            }
+        } catch let receivedError {
+            XCTAssertEqual(receivedError as NSError?, expectedError, file: file, line: line)
         }
-        
-        wait(for: [exp], timeout: 1.0)
-        
-        XCTAssertEqual(receivedError as NSError?, expectedError, file: file, line: line)
     }
 }
