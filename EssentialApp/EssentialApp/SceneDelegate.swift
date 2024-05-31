@@ -16,11 +16,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     var window: UIWindow?
     
-    private lazy var scheduler: any Scheduler = DispatchQueue(
-        label: "com.essentialdeveloper.infra.queue",
-        qos: .userInitiated,
-        attributes: .concurrent
-    )
+    private lazy var scheduler: any Scheduler = {
+        if let store = store as? CoreDataFeedStore {
+            return CoreDataFeedStoreScheduler(store: store)
+        }
+        
+        return DispatchQueue(
+            label: "com.essentialdeveloper.infra.queue",
+            qos: .userInitiated,
+            attributes: .concurrent
+        )
+    }()
     
     private lazy var httpClient: HTTPClient = {
         URLSessionHTTPClient(session: URLSession(configuration: .ephemeral))
@@ -58,11 +64,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }()
     
     
-    convenience init(httpClient: HTTPClient, store: FeedStore & FeedImageDataStore, scheduler: some Scheduler) {
+    convenience init(httpClient: HTTPClient, store: FeedStore & FeedImageDataStore) {
         self.init()
         self.httpClient = httpClient
         self.store = store
-        self.scheduler = scheduler
     }
     
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -97,7 +102,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
     private func makeRemoteFeedLoaderWithLocalFallback() -> AnyPublisher<Paginated<FeedImage>, Error> {
         return makeRemoteFeedLoader()
-            .caching(to: localFeedLoader)
+            .caching(to: localFeedLoader, onScheduler: scheduler)
             .fallback(to: localFeedLoader.loadPublisher)
             .map(makeFirstPage)
             .subscribe(onSome: scheduler)
@@ -111,7 +116,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return (cachedItems + newItems, newItems.last)
             }
             .map(makePage)
-            .caching(to: localFeedLoader)
+            .caching(to: localFeedLoader, onScheduler: scheduler)
             .subscribe(onSome: scheduler)
             .eraseToAnyPublisher()
     }

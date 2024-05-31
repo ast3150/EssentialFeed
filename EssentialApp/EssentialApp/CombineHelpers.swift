@@ -88,12 +88,20 @@ extension Publisher {
 }
 
 extension Publisher {
-    func caching(to cache: FeedCache) -> AnyPublisher<Output, Failure> where Output == [FeedImage] {
-        handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
+    func caching(to cache: FeedCache, onScheduler scheduler: any Scheduler) -> AnyPublisher<Output, Failure> where Output == [FeedImage] {
+        handleEvents(receiveOutput: { output in
+            scheduler.schedule {
+                cache.saveIgnoringResult(output)
+            }
+        }).eraseToAnyPublisher()
     }
     
-    func caching(to cache: FeedCache) -> AnyPublisher<Output, Failure> where Output == Paginated<FeedImage> {
-        handleEvents(receiveOutput: cache.saveIgnoringResult).eraseToAnyPublisher()
+    func caching(to cache: FeedCache, onScheduler scheduler: any Scheduler) -> AnyPublisher<Output, Failure> where Output == Paginated<FeedImage> {
+        handleEvents(receiveOutput: { output in
+            scheduler.schedule {
+                cache.saveIgnoringResult(output)
+            }
+        }).eraseToAnyPublisher()
     }
 }
 
@@ -132,7 +140,6 @@ extension Publisher {
 }
 
 extension DispatchQueue {
-    
     static var immediateWhenOnMainQueueScheduler: ImmediateWhenOnMainQueueScheduler {
         ImmediateWhenOnMainQueueScheduler()
     }
@@ -167,3 +174,42 @@ extension DispatchQueue {
     }
 }
 
+struct CoreDataFeedStoreScheduler: Scheduler {
+    typealias SchedulerTimeType = DispatchQueue.SchedulerTimeType
+    typealias SchedulerOptions = DispatchQueue.SchedulerOptions
+    
+    var now: SchedulerTimeType { .init(.now()) }
+    
+    var minimumTolerance: SchedulerTimeType.Stride { .zero }
+
+    let store: CoreDataFeedStore
+    
+    public init(store: CoreDataFeedStore) {
+        self.store = store
+    }
+    
+    func schedule(after date: SchedulerTimeType, interval: SchedulerTimeType.Stride, tolerance: SchedulerTimeType.Stride, options: SchedulerOptions?, _ action: @escaping () -> Void) -> any Cancellable {
+        if store.contextQueue == .main, Thread.isMainThread {
+            action()
+        } else {
+            store.perform(action)
+        }
+        return AnyCancellable {}
+    }
+    
+    func schedule(after date: SchedulerTimeType, tolerance: SchedulerTimeType.Stride, options: SchedulerOptions?, _ action: @escaping () -> Void) {
+        if store.contextQueue == .main, Thread.isMainThread {
+            action()
+        } else {
+            store.perform(action)
+        }    }
+    
+    
+    func schedule(options: SchedulerOptions?, _ action: @escaping () -> Void) {
+        if store.contextQueue == .main, Thread.isMainThread {
+            action()
+        } else {
+            store.perform(action)
+        }
+    }
+}
