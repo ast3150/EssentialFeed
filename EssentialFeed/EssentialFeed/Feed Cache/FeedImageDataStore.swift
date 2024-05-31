@@ -28,7 +28,7 @@ public extension FeedImageDataStore {
         var result: InsertionResult!
         insert(data, for: url) {
             result = $0
-            group.wait()
+            group.leave()
         }
         group.wait()
         return try result.get()
@@ -45,7 +45,7 @@ public extension FeedImageDataStore {
         group.wait()
         return try result.get()
     }
-    
+
     func insert(_ data: Data, for url: URL, completion: @escaping (InsertionResult) -> Void) {}
     func retrieve(dataForURL url: URL, completion: @escaping (RetrievalResult) -> Void) {}
 }

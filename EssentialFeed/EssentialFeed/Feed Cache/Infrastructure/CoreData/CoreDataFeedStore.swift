@@ -34,7 +34,15 @@ public final class CoreDataFeedStore {
     }
     
     func performAsync(_ action: @escaping (NSManagedObjectContext) -> Void) {
+        let context = self.context
         context.perform { [context] in action(context) }
+    }
+    
+    func performSync<R>(_ action: (NSManagedObjectContext) -> Result<R, Error>) throws -> R {
+        let context = self.context
+        var result: Result<R, Error>!
+        context.performAndWait { result = action(context) }
+        return try result.get()
     }
     
     
